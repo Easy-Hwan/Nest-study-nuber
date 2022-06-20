@@ -1,4 +1,5 @@
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { TryCatch } from 'src/try-catch.decorator';
 import { CreateRestaurantDto } from './dtos/restaurant-create.dto';
 import { UpdateRestaurantDto } from './dtos/restaurant-update.dto';
 import { Restaurant } from './entities/restaurants.entity';
@@ -26,6 +27,7 @@ export class RestaurantsResolve {
     }
   }
 
+  @TryCatch('update falid')
   @Mutation((returns) => Boolean)
   async updateRestaurant(
     @Args() updateRestaurantDto: UpdateRestaurantDto,
